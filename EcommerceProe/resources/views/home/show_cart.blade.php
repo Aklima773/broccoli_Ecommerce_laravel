@@ -132,32 +132,20 @@
 
                         <td class="cart-product-price" style="font-size:20px">{{ $cart->per_product_price }}</td>
                         <td class="cart-product-quantity">
+                          <div class="d-flex justify-content-between">
+                            <form action="{{ route('decrease_cart', $cart->id) }}" method="post">
+                              @csrf
+                              <input type="submit" value="-" name="minus" class="minus-btn">
+                            </form>
+                            <input type="text" name="quantityy" id="quantity" value="{{ $cart->product_quantity }}"
+                              class="result text-center" disabled>
+                            <form action="{{ route('cart_add', $cart->product_id) }}" method="post">
+                              @csrf
+                              <input type="number" name="quantity" value="1" hidden>
+                              <input type="submit" value="+" class="plus-btn">
+                            </form>
+                          </div>
 
-
-
-                          <form action="{{ url('increasing_quantity', $cart->id) }}" id="myForm" method="post">
-                            @csrf
-                            <div class="cart-plus-minus">
-                              <input type="text" value="0" name="quantityy" class="cart-plus-minus-box"
-                                onclick="myFunction()">
-                              <!-- <input type="submit" value="sub"> -->
-
-                            </div>
-                            <div>
-                              <input type="number" name="quantityy" value="0" style="width: 60px">
-                              <input type="button" onclick="myFunction()" value="+" class=""
-                                name="plus" style="width: 40px">
-                            </div>
-                            {{-- //////// --}}
-                            <div>
-                              <span><input type="button" value="-" name="minus" class="minus"
-                                  onclick="myFunction()"></span>
-                              <span><input type="text" name="quantityy" id="quantity" value="1"
-                                  class="result"></span>
-                              <span><input type="button" name="plus" value="+" class="plus"
-                                  onclick="myFunction()"></span>
-                            </div>
-                          </form>
                         </td>
 
 
@@ -218,11 +206,16 @@
 
 
 
+
     <script>
-      function myFunction() {
-        document.getElementById('myForm').submit();
-        alert("Your message Sent");
-      }
+      document.addEventListener("DOMContentLoaded", function(event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+      });
+
+      window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+      };
     </script>
 
     <script>
@@ -240,19 +233,18 @@
 
 
 
-    < !--All JS Plugins-->
-      < script src="/broccoli/js/plugins.js">
-        </script>
-        <!-- Main JS -->
-        <script src="/broccoli/js/main.js"></script>
-        <!-- jQery -->
-        <script src="home/js/jquery-3.4.1.min.js"></script>
-        <!-- popper js -->
-        <script src="home/js/popper.min.js"></script>
-        <!-- bootstrap js -->
-        <script src="home/js/bootstrap.js"></script>
-        <!-- custom js -->
-        <script src="home/js/custom.js"></script>
+    {{-- < !--All JS Plugins--> --}}
+    <script src="/broccoli/js/plugins.js"></script>
+    <!-- Main JS -->
+    <script src="/broccoli/js/main.js"></script>
+    <!-- jQery -->
+    <script src="home/js/jquery-3.4.1.min.js"></script>
+    <!-- popper js -->
+    <script src="home/js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="home/js/bootstrap.js"></script>
+    <!-- custom js -->
+    <script src="home/js/custom.js"></script>
 </body>
 
 </html>

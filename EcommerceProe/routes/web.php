@@ -85,9 +85,11 @@ Route::get('/search_product', [HomeController::class, 'search_product']);
 Route::get('/search_product_price)', [HomeController::class, 'search_product_price']);
 
 // add to cart
-Route::post('/add_cart/{id}', [HomeController::class, 'add_cart']);
-Route::post('/increasing_quantity/{id}', [HomeController::class, 'increasing_quantity']);
-Route::post('/add_quantity_to_cart/{id}', [HomeController::class, 'add_cart']);
+Route::post('/add_cart/{product_id}', [HomeController::class, 'add_cart'])->name('cart_add');
+Route::post('/decrease_cart/{cart_id}', [HomeController::class, 'decrease_cart'])->name('decrease_cart');
+// Route::post('/add_cart', [HomeController::class, 'add_to_cart']);
+// Route::post('/increasing_quantity/{id}', [HomeController::class, 'increasing_quantity']);
+// Route::post('/add_quantity_to_cart/{id}', [HomeController::class, 'add_cart']);
 Route::get('/show_cart', [HomeController::class, 'show_cart']);
 Route::get('/remove_cart/{id}', [HomeController::class, 'remove_cart']);
 
