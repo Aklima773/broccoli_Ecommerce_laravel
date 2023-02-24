@@ -167,6 +167,7 @@ class HomeController extends Controller
         $per_product_quantity = $product->quantity;
 
         $cart->product_quantity = $quantity + $request->quantity;
+        $cart->total_product_quantity = $cart->product_quantity * $cart->per_product_quantity;
         if ($product->discount_price != null) {
           $cart->product_price = $product->discount_price * $cart->product_quantity;
           $cart->per_product_price = $product->discount_price;
@@ -177,7 +178,7 @@ class HomeController extends Controller
 
 
         $cart->save();
-        // Alert::success('Product Added Successfully', 'We have added product to the cart');
+        Alert::success('Product Added Successfully', 'We have added product to the cart');
 
         return redirect()->back();
       } else {
@@ -191,7 +192,7 @@ class HomeController extends Controller
         $cart->product_title = $product->title;
         $cart->per_product_quantity = $product->quantity;
         $cart->product_quantity = $request->quantity;
-        $cart->total_product_quantity = $cart->product_quantity * $cart->per_product_quantity;
+        // $cart->total_product_quantity = $cart->product_quantity * $cart->per_product_quantity;
 
 
 
@@ -232,6 +233,8 @@ class HomeController extends Controller
 
     if ($cart_item->product_quantity > 1) {
       $cart_item->product_quantity = $cart_item->product_quantity - 1;
+      $cart_item->total_product_quantity= $cart_item->product_quantity * $cart_item->per_product_quantity;
+      $cart_item->product_price =  $cart_item->product_quantity * $cart_item->per_product_price;
 
       $cart_item->save();
     } else {
@@ -284,7 +287,7 @@ class HomeController extends Controller
     $user = Auth::user();
 
     $user_id = $user->id;
-
+    // $count = cart::where('user_id', $user_id)->count();
     $data = cart::where('user_id', '=', $user_id)->get();
 
     // dd($data);

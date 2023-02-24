@@ -38,6 +38,7 @@ Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth',
 
 // backend
 Route::get('/view_catagory', [AdminController::class, 'view_catagory']);
+Route::get('/orderview', [AdminController::class, 'Invoice'])->name('orderview');
 
 Route::post('/add_catagory', [AdminController::class, 'add_catagory']);
 Route::get('/delete_catagory/{id}', [AdminController::class, 'delete_catagory']);

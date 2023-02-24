@@ -110,6 +110,7 @@
                     <?php $intotalprice = 0; ?>
                     <?php $vat = 0; ?>
                     <?php $productprice = 0; ?>
+
                     @foreach ($cart as $cart)
                       <tr>
                         <td class="cart-product-remove"><a class="btn btn-danger"
@@ -130,7 +131,7 @@
                             {{ $cart->total_product_quantity }} GM</h6>
                         </td>
 
-                        <td class="cart-product-price" style="font-size:20px">{{ $cart->per_product_price }}</td>
+                        <td class="cart-product-price" style="font-size:20px">{{ $cart->per_product_price }} Tk</td>
                         <td class="cart-product-quantity">
                           <div class="d-flex justify-content-between">
                             <form action="{{ route('decrease_cart', $cart->id) }}" method="post">
@@ -151,7 +152,7 @@
 
 
                         <td class="cart-product-subtotal" style="font-size:20px">Total Price :
-                          ${{ $cart->product_price }}</td>
+                          {{ $cart->product_price }} Tk</td>
                       </tr>
                       <?php $productprice = $cart->product_price; ?>
 
@@ -159,7 +160,7 @@
                       <?php $totalProductprice = $totalProductprice + $cart->product_price; ?>
                       <?php $totalquantity = $totalquantity + $cart->product_quantity * $cart->per_product_quantity; ?>
                       <?php $vat = $totalprice * 0.05; ?>
-                      <?php $intotalprice = $vat + $totalprice; ?>
+                      <?php $intotalprice = $vat + $totalprice + 60; ?>
                     @endforeach
 
                   </tbody>
@@ -170,22 +171,22 @@
                 <hr>
                 <table class="table">
                   <tbody>
-                    <tr>
-                      <td>Product Quantity</td>
-                      <td> {{ $totalquantity }} GM</td>
-                    </tr>
+
                     <tr>
                       <td>Product Price</td>
-                      <td> ${{ $totalprice }}</td>
+                      <td> {{ $totalprice }} Tk</td>
                     </tr>
                     <tr>
                       <td>Vat-5%</td>
-                      <td>{{ $vat }}</td>
+                      <td>{{ $vat }} Tk</td>
                     </tr>
-
+                    <tr>
+                      <td>Deliver Charge</td>
+                      <td> 10 Tk</td>
+                    </tr>
                     <tr>
                       <td><strong>Have To Pay</strong></td>
-                      <td><strong> ${{ $intotalprice }}</strong></td>
+                      <td><strong> {{ $intotalprice }} Tk</strong></td>
                     </tr>
                   </tbody>
                 </table>

@@ -57,7 +57,7 @@
 @endif
 <div class="container" style="margin-top:-250px">
 
-    <h1 style="padding: 20px; text-align:center; font-size:25px; font-weight:700; color:blue; margin-top:150px">Pay Using Your Card - Total Amount ${{$intotalprice}}</h1>
+    <h1 style="padding: 20px; text-align:center; font-size:25px; font-weight:700; color:blue; margin-top:150px">Pay Using Your Card - Total Amount {{$intotalprice}} Tk</h1>
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">

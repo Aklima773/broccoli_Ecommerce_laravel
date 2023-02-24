@@ -71,8 +71,10 @@ label{
               </div>
               <div class="div_design">
               <label>Product Description :</label>
-                    <input class="input_color" type="text" name="description" placeholder="Write Product Description" required>
-
+                    <!-- <input class="input_color" type="text" name="description" placeholder="Write Product Description" required> -->
+                    <div class="controls center" style="margin:auto; ">
+                                <textarea class="ckeditor form-control" name="description" rows="3" cols="3" style="height:20px " placeholder="Write Product Description" required></textarea>
+                            </div>
               </div>
               <div class="div_design">
               <label>Product Price :</label>

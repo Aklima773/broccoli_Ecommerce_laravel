@@ -17,40 +17,6 @@ use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
-//   public function view_catagory()
-//   {
-// if(Auth::id()){
-//     $data = catagory::all();
-//   return view('admin.category', compact('data'));
-// }
-// else{
-//     return redirect('login');
-// }
-
-
-//   }
-
-//   public function add_catagory(Request $request){
-
-//     $data = new Catagory();
-//     $data->catagory_name=$request->catagory;
-
-//     $data->save();
-
-//     return redirect()->back()->with('msg','Catagory Added Successfully');
-
-//     }
-
-//     public function delete_catagory($id)
-//     {
-
-//       $data = catagory::find($id);
-//       $data->delete();
-
-//     return redirect()->back()->with('msg',"Successfully Deleted");
-
-//     }
-
 
     public function view_product()
     {
@@ -264,6 +230,22 @@ class AdminController extends Controller
     $searchText=$request->search;
     $order=Order::where('name', 'LIKE', "%$searchText%")->orWhere('phone', 'LIKE', "%$searchText%")->orWhere('product_title', 'LIKE', "%$searchText%")->orWhere('product_id', 'LIKE', "%$searchText%")->get();
     return view('admin.order',compact('order'));
+
+    }
+
+    public function invoice(Request $request){
+
+        $email=$request->email;
+
+
+        $order = Order::where('email', '=', $email)->first();
+
+
+        // $order = Order::all();
+
+            return view('admin.orderview',compact('order'));
+
+
 
     }
 }

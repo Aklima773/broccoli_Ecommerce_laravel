@@ -30,6 +30,9 @@ th{
     color: black;
     padding: 23px;
 }
+td{
+    color:yellow;
+}
 
 /* table{
    width: 100px;

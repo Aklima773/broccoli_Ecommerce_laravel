@@ -218,7 +218,7 @@
                         <div class="widget ltn__price-filter-widget">
                             <h4 class="ltn__widget-title ltn__widget-title-border">Filter by price</h4>
                             <div class="price_filter">
-                            <form id="" method="get"  action="{{url('search_product')}}">
+                            <form id="" method="get"  action="{{url('search_product_price')}}">
 
                                     <input type="number" name="search" placeholder="Write Here your price..."/>
                                     <button type="submit">
@@ -473,7 +473,7 @@ function show_reply(caller)
  <!-- For reply button -->
 
 
- <script>
+ <!-- <script>
     document.addEventListener("DOMContentLoaded", function(event) {
         var scrollpos = localStorage.getItem('scrollpos');
         if (scrollpos) window.scrollTo(0, scrollpos);
@@ -482,7 +482,7 @@ function show_reply(caller)
     window.onbeforeunload = function(e) {
         localStorage.setItem('scrollpos', window.scrollY);
     };
-</script>
+</script> -->
 
 
 <!-- All JS Plugins -->

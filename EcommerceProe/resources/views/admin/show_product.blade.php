@@ -12,6 +12,7 @@
 .h1_font{
     font-size: 40px;
     padding-bottom: 40px;
+    color:white;
 }
 .input_color{
     color: black;
@@ -29,6 +30,10 @@ th{
     background-color: skyblue;
     color: black;
     padding: 30px;
+}
+
+td{
+    color:yellow;
 }
 
 
@@ -91,7 +96,7 @@ th{
                 @foreach($product as $product)
                 <tr>
                     <td>{{$product->title}}</td>
-                    <td class="ellipsis">{{$product->description}}</td>
+                    <td class="ellipsis">{!!$product->description!!}</td>
                     <td><i class="fa-solid fa-bangladeshi-taka-sign"></i>{{$product->price}}</td>
                     <td>{{$product->discount_price}}</td>
                     <td>{{$product->quantity}}</td>

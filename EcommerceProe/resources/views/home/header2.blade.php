@@ -83,7 +83,7 @@
 
 
                                         <li><a href="{{url('products')}}">Shop</a></li>
-                                        <li><a href="{{url('show_order')}}">Orders</a></li>
+                                        <li><a href="{{url('show_order')}}">My Orders</a></li>
                                     </ul>
                                 </div>
                             </nav>
