@@ -131,6 +131,7 @@ class HomeController extends Controller
     $comment = comment::orderby('id', 'desc')->get();
     $reply = reply::all();
     $product = product::find($id);
+
     if (Auth::id()) {
       $id = Auth::user()->id;
 
@@ -233,7 +234,7 @@ class HomeController extends Controller
 
     if ($cart_item->product_quantity > 1) {
       $cart_item->product_quantity = $cart_item->product_quantity - 1;
-      $cart_item->total_product_quantity= $cart_item->product_quantity * $cart_item->per_product_quantity;
+      $cart_item->total_product_quantity = $cart_item->product_quantity * $cart_item->per_product_quantity;
       $cart_item->product_price =  $cart_item->product_quantity * $cart_item->per_product_price;
 
       $cart_item->save();
@@ -287,8 +288,11 @@ class HomeController extends Controller
     $user = Auth::user();
 
     $user_id = $user->id;
+
     // $count = cart::where('user_id', $user_id)->count();
     $data = cart::where('user_id', '=', $user_id)->get();
+
+
 
     // dd($data);
 
@@ -298,6 +302,7 @@ class HomeController extends Controller
 
       $order = new Order;
 
+      $order->ordernumber = 1200 +  $user_id;
       $order->name = $data->name;
       $order->email = $data->email;
       $order->phone = $data->phone;
@@ -308,7 +313,6 @@ class HomeController extends Controller
       $order->product_quantity = $data->product_quantity;
       $order->product_image = $data->image;
       $order->product_id = $data->product_id;
-
       $order->payment_status = 'Cash On Delivery';
       $order->delivery_status = 'Processing';
 
@@ -372,7 +376,7 @@ class HomeController extends Controller
     foreach ($data as $data) {
 
       $order = new Order;
-
+      $order->ordernumber = 1200 +  $user_id;
       $order->name = $data->name;
       $order->email = $data->email;
       $order->phone = $data->phone;

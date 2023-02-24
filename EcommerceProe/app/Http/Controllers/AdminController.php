@@ -20,14 +20,13 @@ class AdminController extends Controller
 
     public function view_product()
     {
-        if(Auth::id()){
-            $subcategories=Subcategory::all();
-            $categories=Category::all();
-        $product = Product::all();
+        if (Auth::id()) {
+            $subcategories = Subcategory::all();
+            $categories = Category::all();
+            $product = Product::all();
 
-        return view('admin.product',compact('categories','subcategories','product'));
-        }
-        else{
+            return view('admin.product', compact('categories', 'subcategories', 'product'));
+        } else {
             return redirect('login');
         }
     }
@@ -44,31 +43,32 @@ class AdminController extends Controller
     //     }
     // }
 
-    public function add_product(Request $request){
+    public function add_product(Request $request)
+    {
 
-        $subcategories=Subcategory::all();
-        $categories=Category::all();
+        $subcategories = Subcategory::all();
+        $categories = Category::all();
 
-        $product =new product();
-        $product->title=$request->title;
-        $product->description=$request->description;
-        $product->price=$request->price;
-        $product->discount_price=$request->discount_price;
-        $product->quantity=$request->quantity;
-        $product->cat_id=$request->category;
-        $product->subcat_id=$request->subcategory;
-
-
-        $image=$request->image;
-
-        if($image)
+        $product = new product();
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->discount_price = $request->discount_price;
+        $product->quantity = $request->quantity;
+        $product->cat_id = $request->category;
+        $product->subcat_id = $request->subcategory;
 
 
-          $imagename=time(). '.' .$image->getClientOriginalExtension();
+        $image = $request->image;
 
-          $request->image->move('product', $imagename);
+        if ($image)
 
-           $product->image=$imagename;
+
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+
+        $request->image->move('product', $imagename);
+
+        $product->image = $imagename;
 
 
 
@@ -76,93 +76,83 @@ class AdminController extends Controller
 
         $product->save();
 
-        return view('admin.product', compact('subcategories','categories'))->with('msg','Product Added Successfully');
+        return view('admin.product', compact('subcategories', 'categories'))->with('msg', 'Product Added Successfully');
+    }
 
-
-        }
-
-        public function show_product()
-        {
-            if(Auth::id()){
+    public function show_product()
+    {
+        if (Auth::id()) {
             $product = Product::all();
-            $subcategories=Subcategory::all();
-            $categories=Category::all();
+            $subcategories = Subcategory::all();
+            $categories = Category::all();
 
 
-            return view('admin.show_product',compact('product','categories','subcategories'));
-            }
-            else{
-                return redirect('login');
-            }
+            return view('admin.show_product', compact('product', 'categories', 'subcategories'));
+        } else {
+            return redirect('login');
         }
+    }
 
-        public function delete_product($id)
-        {
+    public function delete_product($id)
+    {
 
-          $data = product::find($id);
-          $data->delete();
+        $data = product::find($id);
+        $data->delete();
 
-        return redirect()->back()->with('msg',"Successfully Deleted");
+        return redirect()->back()->with('msg', "Successfully Deleted");
+    }
 
-        }
 
-
-        public function update_product($id)
-        {
+    public function update_product($id)
+    {
 
         $product = product::find($id);
         // $catagory = catagory::all();
         $catagory = Category::all();
         $subcatagory = Subcategory::all();
 
-        return view('admin.update_product', compact('product','catagory','subcatagory'));
+        return view('admin.update_product', compact('product', 'catagory', 'subcatagory'));
+    }
+
+
+    public function update_product_confirm(Request $request, $id)
+    {
+
+        $product = product::find($id);
+
+
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->discount_price = $request->discount_price;
+        $product->quantity = $request->quantity;
+
+
+        $image = $request->image;
+
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+
+            $request->image->move('product', $imagename);
+
+            $product->image = $imagename;
         }
 
 
-        public function update_product_confirm(Request $request,$id)
-    {
+        $product->save();
 
-      $product = product::find($id);
-
-
-      $product->title=$request->title;
-      $product->description=$request->description;
-      $product->price=$request->price;
-      $product->discount_price=$request->discount_price;
-      $product->quantity=$request->quantity;
-
-
-      $image=$request->image;
-
-      if($image)
-
-      {
-        $imagename=time(). '.' .$image->getClientOriginalExtension();
-
-        $request->image->move('product', $imagename);
-
-         $product->image=$imagename;
-
-
-      }
-
-
-      $product->save();
-
-      return redirect('show_product')->with('msg','Product Updated Successfully');
-
+        return redirect('show_product')->with('msg', 'Product Updated Successfully');
     }
 
     // showing order
 
     public function view_order()
     {
-        if(Auth::id()){
-        $order = Order::all();
+        if (Auth::id()) {
+            $order = Order::all();
 
-        return view('admin.order',compact('order'));
-        }
-        else{
+            return view('admin.order', compact('order'));
+        } else {
             return redirect('login');
         }
     }
@@ -171,81 +161,73 @@ class AdminController extends Controller
     {
         $order = Order::find($id);
 
-        $order->delivery_status="Delivered";
+        $order->delivery_status = "Delivered";
 
-        $order->payment_status="Paid";
+        $order->payment_status = "Paid";
 
         $order->save();
 
         return redirect()->back();
-
     }
 
     public function print_pdf($id)
     {
-// to send order data
-        $order=order::find($id);
+        // to send order data
+        $order = order::find($id);
 
 
         // to download pdf of order details
-        $pdf=Pdf::loadView('admin.pdf', compact('order'));
+        $pdf = Pdf::loadView('admin.pdf', compact('order'));
 
         return $pdf->download('order_details.pdf');
-
     }
 
     public function send_email($id)
     {
 
- $order=order::find($id);
+        $order = order::find($id);
         return view('admin.email_info', compact('order'));
-
     }
     public function send_user_email(Request $request, $id)
     {
 
-        $order=order::find($id);
+        $order = order::find($id);
 
         $details = [
 
-           'greeting'=>$request->greeting,
-           'firstline'=>$request->firstline,
-           'body'=>$request->body,
-           'button'=>$request->button,
-           'url'=>$request->url,
-           'lastline'=>$request->lastline,
+            'greeting' => $request->greeting,
+            'firstline' => $request->firstline,
+            'body' => $request->body,
+            'button' => $request->button,
+            'url' => $request->url,
+            'lastline' => $request->lastline,
 
         ];
 
-      Notification::send($order, new SendEmailNotification($details));
+        Notification::send($order, new SendEmailNotification($details));
 
-      return redirect()->back();
-
+        return redirect()->back();
     }
 
     //search button
     public function search(Request $request)
     {
 
-    $searchText=$request->search;
-    $order=Order::where('name', 'LIKE', "%$searchText%")->orWhere('phone', 'LIKE', "%$searchText%")->orWhere('product_title', 'LIKE', "%$searchText%")->orWhere('product_id', 'LIKE', "%$searchText%")->get();
-    return view('admin.order',compact('order'));
-
+        $searchText = $request->search;
+        $order = Order::where('name', 'LIKE', "%$searchText%")->orWhere('phone', 'LIKE', "%$searchText%")->orWhere('product_title', 'LIKE', "%$searchText%")->orWhere('product_id', 'LIKE', "%$searchText%")->get();
+        return view('admin.order', compact('order'));
     }
 
-    public function invoice(Request $request){
+    public function invoice(Request $request)
+    {
 
-        $email=$request->email;
+        $ordernumber = $request->number;
 
-
-        $order = Order::where('email', '=', $email)->first();
-
-
-        // $order = Order::all();
-
-            return view('admin.orderview',compact('order'));
+        $order = Order::where('ordernumber', '=', $ordernumber)->get();
 
 
 
+
+        return view('admin.orderview', compact('order'));
     }
 }
