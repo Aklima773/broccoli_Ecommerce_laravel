@@ -120,7 +120,7 @@
                 <td>{{ $order->product_price }}</td>
                 <td>{{ $order->payment_status }}</td>
                 <td>{{ $order->delivery_status }}</td>
-                <td>{{ $order->Invoice }}</td>
+
                 <td><img class="img_size" src="/product/{{ $order->product_image }}"></td>
 
                 <td>
@@ -149,9 +149,7 @@
                   <a href="{{ url('send_email', $order->id) }}" class="btn btn-info">Send Email</a>
 
                 </td>
-                <td>
-                  <a href="{{ url('orderview', $order->user_id) }}" class="btn btn-secondary">Invoice</a>
-                </td>
+
 
 
               </tr>

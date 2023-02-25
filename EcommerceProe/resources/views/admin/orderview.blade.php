@@ -107,7 +107,7 @@ Invoice
 <div class="col-sm-6">
 <h2 class="mb-3" style="font-weight:700; font-size:25px">Address:</h2>
 <div>
-<strong>Name: {{$id->name}}</strong>
+<strong>Name: </strong>
 </div>
 <div>Address: {{$useraddress}}</div>
 

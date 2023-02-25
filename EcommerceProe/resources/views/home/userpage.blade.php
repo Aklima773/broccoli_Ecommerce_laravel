@@ -115,14 +115,14 @@
       </div>
 
 
-      <div class="row ltn__custom-gutter--- justify-content-center pt-80" style="">
+      <div class="row ltn__custom-gutter--- justify-content-center pt-80" >
       <div class="col-lg-12">
                     <div class="section-title-area ltn__section-title-2--- text-center">
                         <h1 class="section-title">All comments</h1>
                     </div>
                 </div>
 
-
+<div class="overflow-auto" style="weight:1200px; height:300px;">
         @foreach($comment as $comment)
         <div style="padding:30px">
             <h1>{{$comment->name}}</h1>
@@ -158,6 +158,7 @@
 
 
 
+
         <!-- For reply -->
 
 
@@ -181,6 +182,7 @@
       </div>
       </div>
       </form>
+      </div>
 
       <!--End Comment and Reply system here -->
 

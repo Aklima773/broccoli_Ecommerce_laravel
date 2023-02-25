@@ -14,15 +14,15 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                     <div class="ltn__category-item ltn__category-item-3 text-center">
                         <div class="ltn__category-item-img">
-                            <a href="{{url('/product_by_cat/'.$category->id)}}">
+
                                 <img src="/category/{{$category->img}}" style="height:120px" alt="Image">
-                            </a>
+
                         </div>
                         <div class="ltn__category-item-name">
-                            <h2 style="margin-bottom:20px"><a href="shop.html">{{$category->name}}</a></h2>
+                            <h2 style="margin-bottom:20px"><a href="{{url('/product_by_cat/'.$category->id)}}">{{$category->name}}</a></h2>
                             @if($category->status==1)
 
-<a  href="" class="btn btn-success">Available</a>
+<a   class="btn btn-success">Available</a>
 
 
 @endif

@@ -85,9 +85,9 @@ width: 150px;
 @include('home.breadcump4')
 
 
-<div class="center">
+<div class="center overflow-auto" style="height:800px">
     <h1 style="font-size: 50px; margin-bottom:20px">All Orders</h1>
-    <table>
+    <table >
         <tr >
             <th class="th_deg">Product Title</th>
             <th class="th_deg">Product Quantity</th>

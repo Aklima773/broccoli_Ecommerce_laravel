@@ -14,7 +14,7 @@
                                                         <p>Predictive analytics is drastically changing the real estate industry. In the past, providing data for quick</p>
                                                     </div>
                                                     <div class="btn-wrapper  animated">
-                                                        <a href="shop.html" class="theme-btn-1 btn btn-effect-1 text-uppercase">Shop now</a>
+                                                        <a href="{{url('products')}}" class="theme-btn-1 btn btn-effect-1 text-uppercase">Shop now</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -42,7 +42,7 @@
                                                         <p>Predictive analytics is drastically changing the real estate industry. In the past, providing data for quick</p>
                                                     </div>
                                                     <div class="btn-wrapper  animated">
-                                                        <a href="shop.html" class="theme-btn-1 btn btn-effect-1 text-uppercase">Shop now</a>
+                                                        <a href="{{url('products')}}" class="theme-btn-1 btn btn-effect-1 text-uppercase">Shop now</a>
                                                     </div>
                                                 </div>
                                             </div>

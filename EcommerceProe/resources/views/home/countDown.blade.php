@@ -9,7 +9,7 @@
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br> Explicabo id, unde hic molestias omnis.</p>
                         <div class="ltn__countdown ltn__countdown-3 bg-white--" data-countdown="2021/12/28"></div>
                         <div class="btn-wrapper animated">
-                            <a href="shop.html" class="theme-btn-1 btn btn-effect-1 text-uppercase">Shop now</a>
+                            <a href="{{url('products')}}" class="theme-btn-1 btn btn-effect-1 text-uppercase">Shop now</a>
                         </div>
                     </div>
                 </div>

@@ -107,7 +107,7 @@ class HomeController extends Controller
     $reply = reply::all();
     $catagory = Category::all();
     $subcategory = Subcategory::all();
-    $product = Product::where('subcat_id', $id)->orWhere('cat_id', $id)->limit(10)->get();
+    $product = Product::where('subcat_id', $id)->orWhere('cat_id', $id)->get();
 
     if (Auth::id()) {
       $id = Auth::user()->id;
@@ -466,11 +466,12 @@ class HomeController extends Controller
     $count = cart::all()->count();
     $reply = reply::all();
     $catagory = Category::all();
+    $subcategory = Subcategory::all();
     $search_text = $request->search;
 
     $product = product::where('title', 'LIKE', "%$search_text%")->orWhere('cat_id', 'LIKE', "%$search_text%")->orWhere('subcat_id', 'LIKE', "%$search_text%")->paginate(6);
 
-    return view('home.userpage', compact('product', 'comment', 'reply', 'count', 'catagory'));
+    return view('home.userpage', compact('product', 'comment', 'reply', 'count', 'catagory','subcategory'));
   }
   //product search
 

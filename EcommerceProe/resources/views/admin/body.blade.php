@@ -72,6 +72,26 @@
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
 
+                          <p style="font-size: 40px; color:white" class="text-success ms-2 mb-0 font-weight-bold">{{$total_subcategory}}</p>
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="icon icon-box-success ">
+                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="font-size:25px; padding:10px" class="text-muted">Total Sub-Categories</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+
                           <p style="font-size: 40px; color:white" class="text-success ms-2 mb-0 font-weight-bold">{{$total_user}}</p>
                         </div>
                       </div>

@@ -82,7 +82,7 @@
 
    @include('sweetalert::alert')
 <!-- search -->
-
+</div>
 <div class="header-search-2">
                                 <form id="" method="get"  action="{{url('search_product')}}">
                                     <input type="text" name="search" value="" placeholder="Search here..."/>
@@ -108,7 +108,7 @@
 </div>
 
             </div>
-            <div class="row">
+            <div class="row overflow-auto" style="height:1000px">
             @forelse($product as $products)
                <div class="col-lg-5">
 
@@ -183,29 +183,15 @@
 </div>
                @endforelse
 
-
-               <!-- pagination -->
-
-
-
             </div>
 
 
          </div>
       </section>
-
-      <!-- end product section -->
-
-
-
-
-
-
-      </div>
       <div class="col-lg-3">
       <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
                         <!-- Category Widget -->
-                        <div class="widget ltn__menu-widget">
+                        <div class="widget ltn__menu-widget overflow-auto"  style="height:450px; margin-top:250px">
                         <h4 class="ltn__widget-title ltn__widget-title-border">Product Sub Categories</h4>
                         <ul>
                             @foreach($subcategory as $subcatagory)
@@ -234,81 +220,7 @@
 
                         </div>
 
-                        <!-- Top Rated Product Widget -->
-                        <div class="widget ltn__top-rated-product-widget">
-                            <h4 class="ltn__widget-title ltn__widget-title-border">Top Rated Product</h4>
-                            <ul>
-                                <li>
-                                    <div class="top-rated-product-item clearfix">
-                                        <div class="top-rated-product-img">
-                                            <a href="product-details.html"><img src="img/product/1.png" alt="#"></a>
-                                        </div>
-                                        <div class="top-rated-product-info">
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h6><a href="product-details.html">Mixel Solid Seat Cover</a></h6>
-                                            <div class="product-price">
-                                                <span>$49.00</span>
-                                                <del>$65.00</del>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="top-rated-product-item clearfix">
-                                        <div class="top-rated-product-img">
-                                            <a href="product-details.html"><img src="img/product/2.png" alt="#"></a>
-                                        </div>
-                                        <div class="top-rated-product-info">
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h6><a href="product-details.html">Vegetables Juices</a></h6>
-                                            <div class="product-price">
-                                                <span>$49.00</span>
-                                                <del>$65.00</del>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="top-rated-product-item clearfix">
-                                        <div class="top-rated-product-img">
-                                            <a href="product-details.html"><img src="img/product/3.png" alt="#"></a>
-                                        </div>
-                                        <div class="top-rated-product-info">
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h6><a href="product-details.html">Coil Spring Conversion</a></h6>
-                                            <div class="product-price">
-                                                <span>$49.00</span>
-                                                <del>$65.00</del>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+
                         <!-- Search Widget -->
                         <div class="widget ltn__search-widget">
                             <h4 class="ltn__widget-title ltn__widget-title-border">Search Objects</h4>
@@ -318,57 +230,15 @@
                             </form>
                         </div>
 
-
-
-
-
-                    </aside>
-      </div>
-      </div>
-        </div>
-    </div>
-    </div>
-
-<!-- view product end -->
-
-
-
-
-
-          <!-- latest Products -->
-          @include('home.lastestproducts')
-      <!-- latest Products -->
-
-
-
-    <!-- Comment and Reply system starts here -->
-
-    <div class="row ltn__custom-gutter--- justify-content-center pt-80" style="padding-bottom:20px">
-      <div style="text-align:center; padding-bottom:30px; margin-left:40px">
-        <h1 style="font-size: 30px; text-align:center; padding-top:20px; padding-bottom:20px">Comments</h1>
-
-        <div class="col-md-12">
-        <form action="{{url('add_comment')}}" method="POST">
-            @csrf
-            <textarea style="height: 150px; width:600px" placeholder="Comment Something Here" name="comment"></textarea>
-            <br>
-
-            <input type="submit" class="btn btn-primary" value="Comment">
-        </form>
-
-      </div>
-      </div>
-      </div>
-
-
-      <div class="row ltn__custom-gutter--- justify-content-center pt-80" style="">
+<div class="sidebar ltn__shop-sidebar ltn__right-sidebar">
+                        <div class="row ltn__custom-gutter--- justify-content-center pt-80" style="">
       <div class="col-lg-12">
                     <div class="section-title-area ltn__section-title-2--- text-center">
-                        <h1 class="section-title">All comments</h1>
+                        <h4 class="section-title" style="font-size:25px">All comments</h4>
                     </div>
                 </div>
 
-
+                <div class="overflow-auto" style="weight:1200px; height:300px;">
         @foreach($comment as $comment)
         <div style="padding:30px">
             <h1>{{$comment->name}}</h1>
@@ -404,6 +274,7 @@
 
 
 
+
         <!-- For reply -->
 
 
@@ -427,6 +298,47 @@
       </div>
       </div>
       </form>
+      </div>
+      </div>
+
+
+                    </aside>
+      </div>
+      </div>
+        </div>
+    </div>
+    </div>
+
+<!-- view product end -->
+
+
+
+
+
+
+      <!-- latest Products -->
+
+
+
+    <!-- Comment and Reply system starts here -->
+
+    <div class="row ltn__custom-gutter--- justify-content-center pt-80" style="padding-bottom:20px">
+      <div style="text-align:center; padding-bottom:30px; margin-left:40px">
+        <h1 style="font-size: 30px; text-align:center; padding-top:20px; padding-bottom:20px">Comments</h1>
+
+        <div class="col-md-12">
+        <form action="{{url('add_comment')}}" method="POST">
+            @csrf
+            <textarea style="height: 150px; width:600px" placeholder="Comment Something Here" name="comment"></textarea>
+            <br>
+
+            <input type="submit" class="btn btn-primary" value="Comment">
+        </form>
+
+      </div>
+      </div>
+      </div>
+
 
 
 

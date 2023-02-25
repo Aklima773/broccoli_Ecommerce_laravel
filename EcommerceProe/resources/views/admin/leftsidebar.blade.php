@@ -151,19 +151,6 @@
     <!-- Sub_category -->
 
 
-
-
-
-    <li class="nav-item menu-items">
-      <a class="nav-link" href="{{ url('view_catagory') }}">
-        <span class="menu-icon">
-          <i class="mdi mdi-playlist-play"></i>
-        </span>
-        <span class="menu-title">Category</span>
-      </a>
-    </li>
-
-
     <!-- order -->
     <li class="nav-item menu-items">
       <a class="nav-link" href="{{ url('view_order') }}">
