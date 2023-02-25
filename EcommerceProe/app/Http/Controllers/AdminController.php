@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\OrderDetails;
 use App\Models\Subcategory;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Notifications\SendEmailNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -220,14 +221,60 @@ class AdminController extends Controller
 
     public function invoice(Request $request)
     {
+        // $user=User::all();
+        $orders=Order::all();
+        $id=User::all();
 
         $ordernumber = $request->number;
+        $user_id = $request->id;
+        $date= $request->date;
 
-        $order = Order::where('ordernumber', '=', $ordernumber)->get();
+        $date=Order::all();
+
+        $order = Order::where('ordernumber', '=', $ordernumber)->where('user_id', '=', $user_id)->get();
+        $username=Order::where('id','=',$user_id)->get('name');
+        $useremail=Order::where('id','=',$user_id)->get('email');
+        $userphone=Order::where('id','=',$user_id)->get('phone');
+        $useraddress=Order::where('id','=',$user_id)->get('address');
+        $status=Order::where('id','=',$user_id)->get('payment_status');
 
 
 
 
-        return view('admin.orderview', compact('order'));
+
+
+       $order_details= new OrderDetails();
+$order_details->ordernumber= $ordernumber;
+$order_details->User_name= $username;
+$order_details->user_email= $useremail;
+$order_details->user_phone= $userphone;
+$order_details->User_address= $useraddress;
+$order_details->user_id=  $user_id;
+// $order_details->product_title=  $order->product_title;
+// $order_details->product_quantity=  $order->product_quantity;
+// $order_details->product_price=  $order->product_price;
+// $order_details->per_product_price=  $order->per_product_price;
+$order_details->payment_status=    $status;
+
+
+$order_details->save();
+
+
+
+
+
+
+
+
+
+
+        // $name=$order->name;
+
+
+
+
+        return view('admin.orderview', compact('order','ordernumber','user_id','username','useremail','userphone','useraddress','status','orders','id','date'));
     }
+
+
 }

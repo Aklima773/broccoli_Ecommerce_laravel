@@ -124,7 +124,7 @@
 
             <!-- showing added sub category -->
 
-            <div>
+            <div class="overflow-auto" style="height: 300px;">
     <h1 class="h1_font" style="color:white; text-align:center; margin-top: 30px; " >All Sub Category</h1>
             <table class="center" style="width:95%">
                 <tr>

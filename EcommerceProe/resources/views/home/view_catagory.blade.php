@@ -9,7 +9,7 @@
                             <div class="ltn__category-menu-title">
                                 <h2 class="section-bg-2--- ltn__secondary-bg text-color-white">Sub categories</h2>
                             </div>
-                            <div class="ltn__category-menu-toggle ltn__one-line-active">
+                            <div class="ltn__category-menu-toggle ltn__one-line-active overflow-auto" class="overflow-auto" style="height: 450px;" >
                                 <ul>
                                     <!-- Submenu Column - unlimited -->
                                     @foreach($subcategory as $subcategory)

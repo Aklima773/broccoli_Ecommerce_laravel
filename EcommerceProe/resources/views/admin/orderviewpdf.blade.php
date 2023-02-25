@@ -60,46 +60,15 @@
 
 
 
-          <div class="control-group">
-            <form action="{{ route('order') }}" method="get">
-              <select name="number">
-                <option>select One</option>
-                @foreach($orders as $orders)
-                <option value="{{$orders->ordernumber}}">{{$orders->ordernumber}}</option>
-                @endforeach
-              </select>
 
-              <select name="id">
-                <option>select One</option>
-                @foreach($id as $id)
-                <option value="{{$id->id}}">{{$id->name}}</option>
-                @endforeach
-              </select>
-
-              <!-- <select name="date">
-                <option>select One</option>
-                @foreach($date as $date)
-                <option value="{{$date->id}}">{{$date->created_at}}</option>
-                @endforeach
-              </select> -->
-              <input class="btn btn-info" type="Submit" value="Submit" style="background-color:#2596be">
-              <td>
-                 <button class="btn btn-secondary"  onclick="myfun('print')">Print Pdf</button>
-                </td>
-            </form>
-          </div>
-
-
-<br>
           <!-- showing added category -->
-<div id="print">
+
 <div class="container" style="color:black; text-align:left">
   <div class="card">
 <div class="card-header">
 Invoice
-<!-- <input type="text" value=""> -->
 
-  <span class="float-right"> <strong>Status:{{$status}}</strong></span>
+  <span class="float-right"> <strong>Status:</strong></span>
 
 </div>
 <div class="card-body">
@@ -107,7 +76,7 @@ Invoice
 <div class="col-sm-6">
 <h2 class="mb-3" style="font-weight:700; font-size:25px">Address:</h2>
 <div>
-<strong>Name: {{$id->name}}</strong>
+<strong>Name: {{$orderdetails->User_name}}</strong>
 </div>
 <div>Address: {{$useraddress}}</div>
 
@@ -138,9 +107,9 @@ Invoice
 </tr>
 </thead>
 
-<?php $subtotal = 0; ?>
-<?php $totalpayment = 0; ?>
-<?php $vat = 0; ?>
+<?php $subtotal=0;  ?>
+<?php $totalpayment=0;  ?>
+<?php $vat=0;  ?>
 <tbody>
     @foreach($order as $key=>$order)
 
@@ -156,11 +125,11 @@ Invoice
 <td class="right">{{$order->product_price}}</td>
 
 </tr>
-<?php $subtotal = $subtotal + $order->product_price; ?>
+<?php $subtotal=$subtotal + $order->product_price ?>
 
 @endforeach
-<?php $vat = $subtotal * 0.05; ?>
-<?php $totalpayment = $subtotal + $vat + 60; ?>
+<?php $vat=$subtotal * 0.05 ?>
+<?php $totalpayment=$subtotal + $vat + 60 ?>
 
 </tbody>
 </table>
@@ -213,7 +182,7 @@ Invoice
 </div>
 </div>
 
-</div>
+
 
 
         </div>
@@ -222,24 +191,6 @@ Invoice
       <!-- section end -->
 
       <!-- body part     -->
-
-
-<script>
-
-    // wholepage print
-function myfun(){
-    window.print();
-}
-
-function myfun(print){
-var backup=document.body.innerHTML;
-var divcontent = document.getElementById(print).innerHTML;
-document.body.innerHTML= divcontent;
-window.print();
-document.body.innerHTML = backup;
-}
-</script>
-
 
       @include('admin.js')
 </body>

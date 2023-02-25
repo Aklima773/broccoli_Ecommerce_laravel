@@ -58,7 +58,7 @@
 @endif
 <!-- message show -->
 
-          <div >
+          <div class="overflow-auto" style="height: 800px;" >
     <h1 class="h1_font" style="color:white; text-align:center; margin-top: 30px; " >All Category</h1>
             <table class="center" style="width:80%">
                 <tr>

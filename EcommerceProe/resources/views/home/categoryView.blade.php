@@ -9,7 +9,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row ltn__category-slider-active--- slick-arrow-1">
+            <div class="row ltn__category-slider-active--- slick-arrow-1 overflow-auto "  style="height: 400px; ">
                 @foreach($catagory as $category)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                     <div class="ltn__category-item ltn__category-item-3 text-center">
@@ -32,6 +32,7 @@
                 </div>
 @endforeach
             </div>
+
         </div>
     </div>
     <!-- CATEGORY AREA END -->

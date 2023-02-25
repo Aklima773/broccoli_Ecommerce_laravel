@@ -60,6 +60,7 @@ Route::get('/delivered/{id}', [AdminController::class, 'delivered']);
 
 // print pdf
 Route::get('/print_pdf/{id}', [AdminController::class, 'print_pdf']);
+Route::get('/print_pdf_orderview/{id}', [AdminController::class, 'print_pdf_orderview']);
 
 //to send email
 Route::get('/send_email/{id}', [AdminController::class, 'send_email']);

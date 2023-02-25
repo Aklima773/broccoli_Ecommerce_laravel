@@ -310,6 +310,7 @@ class HomeController extends Controller
       $order->user_id = $data->user_id;
       $order->product_title = $data->product_title;
       $order->product_price = $data->product_price;
+      $order->per_product_price = $data->per_product_price;
       $order->product_quantity = $data->product_quantity;
       $order->product_image = $data->image;
       $order->product_id = $data->product_id;
@@ -384,6 +385,7 @@ class HomeController extends Controller
       $order->user_id = $data->user_id;
       $order->product_title = $data->product_title;
       $order->product_price = $data->product_price;
+      $order->per_product_price = $data->per_product_price;
       $order->product_quantity = $data->product_quantity;
       $order->product_image = $data->image;
       $order->product_id = $data->product_id;
