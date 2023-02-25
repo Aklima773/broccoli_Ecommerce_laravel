@@ -63,7 +63,7 @@
             <div class="option_container">
 
 
-              <div class="options">
+              <div class="options ">
                 <a href="{{ url('product_details', $products->id) }}" class="option1">
                   Product Details
                 </a>

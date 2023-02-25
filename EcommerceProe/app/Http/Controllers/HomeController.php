@@ -32,7 +32,7 @@ class HomeController extends Controller
     $user_id = Auth::id();
     $catagory = Category::all();
     $count = cart::where('user_id', $user_id)->count();
-    $product = Product::paginate(4);
+    $product = Product::paginate(6);
     $comment = comment::orderby('id', 'desc')->get();
     $reply = reply::all();
 
@@ -91,7 +91,7 @@ class HomeController extends Controller
 
 
 
-      $product = Product::paginate(4);
+      $product = Product::paginate(6);
       $comment = comment::orderby('id', 'desc')->get();
       $reply = reply::all();
       $catagory = Category::all();
@@ -114,8 +114,9 @@ class HomeController extends Controller
 
       $cart = cart::where('user_id', '=', $id)->get();
       $count = cart::where('user_id', $id)->count();
+    } else {
+      $count = 0;
     }
-
     return view('home.all_products_by_subcat', compact('catagory', 'subcategory', 'product', 'count', 'comment', 'reply'));
   }
 
@@ -137,6 +138,8 @@ class HomeController extends Controller
 
 
       $count = cart::where('user_id', $id)->count();
+    } else {
+      $count = 0;
     }
     return view('home.product_details', compact('product', 'count', 'comment', 'reply', 'catagory'));
   }
@@ -465,7 +468,7 @@ class HomeController extends Controller
     $catagory = Category::all();
     $search_text = $request->search;
 
-    $product = product::where('title', 'LIKE', "%$search_text%")->orWhere('cat_id', 'LIKE', "%$search_text%")->orWhere('subcat_id', 'LIKE', "%$search_text%")->paginate(4);
+    $product = product::where('title', 'LIKE', "%$search_text%")->orWhere('cat_id', 'LIKE', "%$search_text%")->orWhere('subcat_id', 'LIKE', "%$search_text%")->paginate(6);
 
     return view('home.userpage', compact('product', 'comment', 'reply', 'count', 'catagory'));
   }
@@ -542,7 +545,7 @@ class HomeController extends Controller
       $count = 0;
     }
 
-    $product = Product::paginate(4);
+    $product = Product::paginate(6);
 
 
     // $comment=comment::orderby('id', 'desc')->get();
@@ -569,7 +572,7 @@ class HomeController extends Controller
     $subcategory = Subcategory::all();
     $search_text = $request->search;
 
-    $product = product::where('price', 'LIKE', "%$search_text%")->orWhere('cat_id', 'LIKE', "%$search_text%")->orWhere('subcat_id', 'LIKE', "%$search_text%")->paginate(4);
+    $product = product::where('price', 'LIKE', "%$search_text%")->orWhere('cat_id', 'LIKE', "%$search_text%")->orWhere('subcat_id', 'LIKE', "%$search_text%")->paginate(6);
 
     return view('home.all_products', compact('product', 'comment', 'reply', 'count', 'catagory', 'subcategory'));
   }
@@ -613,7 +616,7 @@ class HomeController extends Controller
     $subcategory = Subcategory::all();
     $search_text = $request->search;
 
-    $product = product::where('title', 'LIKE', "%$search_text%")->orWhere('cat_id', 'LIKE', "%$search_text%")->orWhere('subcat_id', 'LIKE', "%$search_text%")->orWhere('price', 'LIKE', "%$search_text%")->paginate(4);
+    $product = product::where('title', 'LIKE', "%$search_text%")->orWhere('cat_id', 'LIKE', "%$search_text%")->orWhere('subcat_id', 'LIKE', "%$search_text%")->orWhere('price', 'LIKE', "%$search_text%")->paginate(6);
 
     return view('home.all_products', compact('product', 'comment', 'reply', 'count', 'catagory', 'subcategory'));
   }
