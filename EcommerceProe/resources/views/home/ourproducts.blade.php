@@ -129,13 +129,13 @@
 
     </div>
     <div class="btn-box">
-      <a href="{{url('products')}}">
+      <a href="{{ url('products') }}">
         View All products
       </a>
     </div>
     <span style="padding-top:20px;">
       {!! $product->withQueryString()->links('pagination::bootstrap-4') !!}
-      <!-- {!! $product->appends(Request::all())->links() !!} -->
+      {{-- <!-- {!! $product->appends(Request::all())->links() !!} --> --}}
     </span>
   </div>
 </section>

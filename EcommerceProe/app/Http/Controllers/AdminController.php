@@ -7,12 +7,13 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\OrderDetails;
-use App\Models\Subcategory;
+use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Notifications\SendEmailNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 // use PDF;
 
@@ -22,7 +23,7 @@ class AdminController extends Controller
     public function view_product()
     {
         if (Auth::id()) {
-            $subcategories = Subcategory::all();
+            $subcategories = SubCategory::all();
             $categories = Category::all();
             $product = Product::all();
 
@@ -47,7 +48,7 @@ class AdminController extends Controller
     public function add_product(Request $request)
     {
 
-        $subcategories = Subcategory::all();
+        $subcategories = SubCategory::all();
         $categories = Category::all();
 
         $product = new product();
@@ -57,7 +58,7 @@ class AdminController extends Controller
         $product->discount_price = $request->discount_price;
         $product->quantity = $request->quantity;
         $product->cat_id = $request->category;
-        $product->subcat_id = $request->subcategory;
+        $product->subcat_id = $request->SubCategory;
 
 
         $image = $request->image;
@@ -84,7 +85,7 @@ class AdminController extends Controller
     {
         if (Auth::id()) {
             $product = Product::all();
-            $subcategories = Subcategory::all();
+            $subcategories = SubCategory::all();
             $categories = Category::all();
 
 
@@ -110,7 +111,7 @@ class AdminController extends Controller
         $product = product::find($id);
         // $catagory = catagory::all();
         $catagory = Category::all();
-        $subcatagory = Subcategory::all();
+        $subcatagory = SubCategory::all();
 
         return view('admin.update_product', compact('product', 'catagory', 'subcatagory'));
     }
@@ -219,45 +220,31 @@ class AdminController extends Controller
         return view('admin.order', compact('order'));
     }
 
-    public function invoice(Request $request)
+    public function Invoice(Request $request)
     {
         // $user=User::all();
-        $orders=Order::all();
-        $id=User::all();
+        $orders = Order::all();
+        $id = User::all();
 
         $ordernumber = $request->number;
         $user_id = $request->id;
-        $date= $request->date;
+        $date = $request->date;
 
-        $date=Order::all();
+        $date = Order::all();
 
         $order = Order::where('ordernumber', '=', $ordernumber)->where('user_id', '=', $user_id)->get();
-        $username=Order::where('id','=',$user_id)->get('name');
-        $useremail=Order::where('id','=',$user_id)->get('email');
-        $userphone=Order::where('id','=',$user_id)->get('phone');
-        $useraddress=Order::where('id','=',$user_id)->get('address');
-        $status=Order::where('id','=',$user_id)->get('payment_status');
+        $username = Order::where('id', $user_id)->pluck('name')->first();
+        $useremail = Order::where('id', '=', $user_id)->pluck('email')->first();
+        $userphone = Order::where('id', '=', $user_id)->pluck('phone')->first();
+        $useraddress = Order::where('id', '=', $user_id)->pluck('address')->first();
+        $delivered_status = Order::where('id', '=', $user_id)->pluck('delivery_status')->first();
+        $payment_status = Order::where('id', '=', $user_id)->pluck('payment_status')->first();
 
 
 
 
 
 
-       $order_details= new OrderDetails();
-$order_details->ordernumber= $ordernumber;
-$order_details->User_name= $username;
-$order_details->user_email= $useremail;
-$order_details->user_phone= $userphone;
-$order_details->User_address= $useraddress;
-$order_details->user_id=  $user_id;
-// $order_details->product_title=  $order->product_title;
-// $order_details->product_quantity=  $order->product_quantity;
-// $order_details->product_price=  $order->product_price;
-// $order_details->per_product_price=  $order->per_product_price;
-$order_details->payment_status=    $status;
-
-
-$order_details->save();
 
 
 
@@ -273,8 +260,22 @@ $order_details->save();
 
 
 
-        return view('admin.orderview', compact('order','ordernumber','user_id','username','useremail','userphone','useraddress','status','orders','id','date'));
+        return view('admin.orderview', compact('order', 'ordernumber', 'user_id', 'username', 'useremail', 'userphone', 'useraddress', 'orders', 'id', 'date', 'delivered_status', 'payment_status'));
     }
 
 
+
+
+    public function invoices(Request $request)
+    {
+
+        // $ordernumber = $request->number;
+
+        // $name = DB::table('orders')
+        //     ->join('users', 'users.id', '=', 'orders.user_id')->select('name', 'address', 'phone')
+        //     ->where('orders.ordernumber', $ordernumber)->pluck('users.name')->first();
+
+        // // return response()->json($items);
+        // return view('admin.ordert', compact('ordernumber', 'name'));
+    }
 }
