@@ -83,6 +83,7 @@
                   <!-- <input type="text" value=""> -->
 
                   <span class="float-right"> <strong>{{ $name }}</strong></span>
+                  <span class="float-right"> <strong>{{ $name }}</strong></span>
 
                 </div>
                 <div class="card-body">

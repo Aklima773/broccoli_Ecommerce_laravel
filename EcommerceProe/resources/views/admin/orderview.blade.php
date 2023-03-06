@@ -64,7 +64,7 @@
             <form action="{{ route('order') }}" method="get">
               <select name="number">
                 <option>select One</option>
-                @foreach ($orders as $orders)
+                @foreach ($records as $orders)
                   <option value="{{ $orders->ordernumber }}">{{ $orders->ordernumber }}</option>
                 @endforeach
               </select>
@@ -76,12 +76,11 @@
                 @endforeach
               </select>
 
-              <!-- <select name="date">
-                <option>select One</option>
-                @foreach ($date as $date)
-<option value="{{ $date->id }}">{{ $date->created_at }}</option>
-@endforeach
-              </select> -->
+
+
+
+<input type="date" name="date">
+
               <input class="btn btn-info" type="Submit" value="Submit" style="background-color:#2596be">
               <td>
                 <button class="btn btn-secondary" onclick="myfun('print')">Print Pdf</button>

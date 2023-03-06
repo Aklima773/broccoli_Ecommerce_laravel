@@ -224,26 +224,35 @@ class AdminController extends Controller
     {
         // $user=User::all();
         $orders = Order::all();
+
+        $records = DB::table('orders')
+                ->select('ordernumber', DB::raw('MAX(id) as id'))
+                ->groupBy('ordernumber')
+                ->get();
+
         $id = User::all();
 
         $ordernumber = $request->number;
         $user_id = $request->id;
         $date = $request->date;
 
-        $date = Order::all();
+        // $datee = Order::all();
 
-        $order = Order::where('ordernumber', '=', $ordernumber)->where('user_id', '=', $user_id)->get();
-        $username = Order::where('id', $user_id)->pluck('name')->first();
-        $useremail = Order::where('id', '=', $user_id)->pluck('email')->first();
-        $userphone = Order::where('id', '=', $user_id)->pluck('phone')->first();
-        $useraddress = Order::where('id', '=', $user_id)->pluck('address')->first();
+        $order = DB::table('orders')->where('ordernumber', $ordernumber)->whereDate('created_at',  $date)->orWhere('user_id',$user_id)->whereDate('created_at',  $date)->get();
+        $username = DB::table('orders')
+        ->join('users', 'users.id', '=', 'orders.user_id')
+        ->where('orders.ordernumber', $ordernumber)->orWhere('user_id',$user_id)->pluck('users.name')->first();
+        $useremail = DB::table('orders')
+        ->join('users', 'users.id', '=', 'orders.user_id')
+        ->where('orders.ordernumber', $ordernumber)->pluck('users.email')->first();
+        $userphone =  DB::table('orders')
+        ->join('users', 'users.id', '=', 'orders.user_id')
+        ->where('orders.ordernumber', $ordernumber)->pluck('users.phone')->first();
+        $useraddress =  DB::table('orders')
+        ->join('users', 'users.id', '=', 'orders.user_id')
+        ->where('orders.ordernumber', $ordernumber)->pluck('users.address')->first();
         $delivered_status = Order::where('id', '=', $user_id)->pluck('delivery_status')->first();
         $payment_status = Order::where('id', '=', $user_id)->pluck('payment_status')->first();
-
-
-
-
-
 
 
 
@@ -260,22 +269,22 @@ class AdminController extends Controller
 
 
 
-        return view('admin.orderview', compact('order', 'ordernumber', 'user_id', 'username', 'useremail', 'userphone', 'useraddress', 'orders', 'id', 'date', 'delivered_status', 'payment_status'));
+        return view('admin.orderview', compact('order', 'ordernumber', 'user_id', 'username', 'useremail', 'userphone', 'useraddress', 'orders', 'id', 'date', 'delivered_status', 'payment_status','records'));
     }
 
 
 
 
-    public function invoices(Request $request)
-    {
+    // public function invoices(Request $request)
+    // {
 
-        // $ordernumber = $request->number;
+    //     $ordernumber = $request->number;
 
-        // $name = DB::table('orders')
-        //     ->join('users', 'users.id', '=', 'orders.user_id')->select('name', 'address', 'phone')
-        //     ->where('orders.ordernumber', $ordernumber)->pluck('users.name')->first();
+    //     $name = DB::table('orders')
+    //         ->join('users', 'users.id', '=', 'orders.user_id')
+    //         ->where('orders.ordernumber', $ordernumber)->pluck('users.name')->first();
 
-        // // return response()->json($items);
-        // return view('admin.ordert', compact('ordernumber', 'name'));
-    }
+    //     // return response()->json($items);
+    //     return view('admin.ordert', compact('ordernumber', 'name'));
+    // }
 }
